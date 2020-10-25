@@ -1,0 +1,8 @@
+POST http://emphasoft-test-assignment.herokuapp.com/api-token-auth/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "test_super",
+    "password": "Nf<U4f<rDbtDxAPn"
+}

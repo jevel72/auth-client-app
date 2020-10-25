@@ -1,0 +1,49 @@
+<div id="header">
+    <div id="checkbox">
+        <label for="filtering">Фильтрация по ID</label>
+        <input type="checkbox" id="filtering" [formControl]="filteringControl" />
+    </div>
+    <div id="search">
+        <label for="username">Найти пользователя: </label>
+        <input type="text" id="username" [formControl]="usernameControl" />
+    </div>
+</div>
+<table>
+    <thead>
+        <th>ID</th>
+        <th>Псевдоним</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Активность</th>
+        <th>Последний вход</th>
+        <th>Суперпользователь</th>
+    </thead>
+    <tbody>
+        <ng-container *ngIf="!filter">
+            <ng-container *ngFor="let user of users">
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.is_active ? 'Да' : 'Нет' }}</td>
+                    <td>{{ user.last_login }}</td>
+                    <td>{{ user.is_superuser ? 'Да' : 'Нет' }}</td>
+                </tr>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="filter">
+            <ng-container #filtered *ngFor="let user of sortedUsersByID">
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.is_active ? 'Да' : 'Нет' }}</td>
+                    <td>{{ user.last_login }}</td>
+                    <td>{{ user.is_superuser ? 'Да' : 'Нет' }}</td>
+                </tr>
+            </ng-container>
+        </ng-container>
+    </tbody>
+</table>

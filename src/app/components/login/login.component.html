@@ -1,0 +1,30 @@
+<p>Вход в систему</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <label for="username">Имя пользователя: </label>
+    <input formControlName="username" type="text" id="username">
+    <ng-container *ngIf="requiredError('username')">
+        <p class="error">Это поле является обязательным!</p>
+    </ng-container>
+    <ng-container *ngIf="maxlengthError('username')">
+        <p class="error">Имя пользователя не должно превышать 150 символов!</p>
+    </ng-container>
+    <ng-container *ngIf="patternError('username')">
+        <p class="error">Некорректные данные!</p>
+    </ng-container>
+    <label for="password">Пароль: </label>
+    <input formControlName="password" type="password" id="password">
+    <ng-container *ngIf="requiredError('password')">
+        <p class="error">Это поле является обязательным!</p>
+    </ng-container>
+    <ng-container *ngIf="maxlengthError('password')">
+        <p class="error">Длина пароля не должна превышать 150 символов!</p>
+    </ng-container>
+    <ng-container *ngIf="patternError('password')">
+        <p class="error">Некорректные данные!</p>
+    </ng-container>
+    <div id="save-password">
+        <label for="save">Сохранить пароль: </label>
+        <input formControlName="save" type="checkbox" id="save">
+    </div>
+    <button type="submit" [disabled]="form.invalid || !form.dirty">Продолжить</button>
+</form>
